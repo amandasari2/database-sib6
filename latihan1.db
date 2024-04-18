@@ -1,4 +1,61 @@
-cd \xampp\mysql;
-mysql -u root -p;
+cd \xampp\mysql
+mysql -u root -p
 create database sib_6;
 show databases; 
+php --version
+
+MariaDB [(none)]> drop database sib_6;
+Query OK, 0 rows affected (0.124 sec)
+
+MariaDB [(none)]> create database sib_6;
+Query OK, 1 row affected (0.009 sec)
+
+MariaDB [(none)]> use sib_6;
+Database changed
+MariaDB [sib_6]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [sib_6]> create table jenis(
+    -> id int primary key auto_increment,
+    -> nama varchar(30) NOT NULL unique);
+Query OK, 0 rows affected (0.085 sec)
+
+MariaDB [sib_6]> describe jenis;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(30) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.072 sec)
+
+MariaDB [sib_6]> desc jenis;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(30) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.056 sec)
+
+MariaDB [sib_6]> create table produk(
+    -> id int primary key auto_increment,
+    -> nam varchar(30) NOT NULL unique,
+    -> harga double NOT NULL,
+    -> stok int NOT NULL,
+    -> idjenis int not null REFERENCES jenis(id),
+    -> foto varchar(255));
+Query OK, 0 rows affected (0.124 sec)
+
+MariaDB [sib_6]> desc produk;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama    | varchar(30)  | NO   | UNI | NULL    |                |
+| harga   | double       | NO   |     | NULL    |                |
+| stok    | int(11)      | NO   |     | NULL    |                |
+| idjenis | int(11)      | NO   |     | NULL    |                |
+| foto    | varchar(255) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+6 rows in set (0.054 sec)
