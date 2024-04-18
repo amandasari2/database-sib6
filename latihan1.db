@@ -1,0 +1,4 @@
+cd \xampp\mysql;
+mysql -u root -p;
+create database sib_6;
+show databases; 
