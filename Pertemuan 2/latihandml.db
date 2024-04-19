@@ -1,0 +1,121 @@
+MariaDB [sib_6]> desc jeniss;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama       | varchar(30) | NO   | UNI | NULL    |                |
+| keterangan | varchar(30) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.080 sec)
+
+MariaDB [sib_6]> insert into jeniss values('','Furniture',''),
+    -> ('','Electronic',''),
+    -> ('','Makanan',''),
+    -> ('','Minuman','');
+Query OK, 4 rows affected, 4 warnings (0.018 sec)
+Records: 4  Duplicates: 0  Warnings: 4
+
+MariaDB [sib_6]> select * from jeniss;
++----+------------+------------+
+| id | nama       | keterangan |
++----+------------+------------+
+|  1 | Furniture  |            |
+|  2 | Electronic |            |
+|  3 | Makanan    |            |
+|  4 | Minuman    |            |
++----+------------+------------+
+4 rows in set (0.001 sec)
+
+MariaDB [sib_6]> desc produk;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama    | varchar(30)  | NO   | UNI | NULL    |                |
+| harga   | double       | NO   |     | NULL    |                |
+| stock   | double       | YES  |     | NULL    |                |
+| idjenis | int(11)      | NO   |     | NULL    |                |
+| foto    | varchar(255) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+6 rows in set (0.064 sec)
+
+MariaDB [sib_6]> insert into produk (nama,harga,stock,idjenis,foto) values
+    -> ('TV',3000000,20,2,'');
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [sib_6]> select *from produk;
++----+------+---------+-------+---------+------+
+| id | nama | harga   | stock | idjenis | foto |
++----+------+---------+-------+---------+------+
+|  1 | TV   | 3000000 |    20 |       2 |      |
++----+------+---------+-------+---------+------+
+1 row in set (0.001 sec)
+
+MariaDB [sib_6]> insert into produk (nama,harga,stock,idjenis,foto) values
+    -> ('RADIO',4000000,10,2,''),
+    -> ('MEJA',550000,5,1,''),
+    -> ('KURSI',750000,5,1,''),
+    -> ('Nasi Goreng',15000,10,3,''),
+    -> ('Es Campur',10000,10,4,'');
+Query OK, 5 rows affected (0.010 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [sib_6]> select *from produk;
++----+-------------+---------+-------+---------+------+
+| id | nama        | harga   | stock | idjenis | foto |
++----+-------------+---------+-------+---------+------+
+|  1 | TV          | 3000000 |    20 |       2 |      |
+|  2 | RADIO       | 4000000 |    10 |       2 |      |
+|  3 | MEJA        |  550000 |     5 |       1 |      |
+|  4 | KURSI       |  750000 |     5 |       1 |      |
+|  5 | Nasi Goreng |   15000 |    10 |       3 |      |
+|  6 | Es Campur   |   10000 |    10 |       4 |      |
++----+-------------+---------+-------+---------+------+
+6 rows in set (0.001 sec)
+
+MariaDB [sib_6]> update jeniss set keterangan = 'Ini adalah Furniture' where id = 1;
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [sib_6]> select *from jeniss;
++----+------------+----------------------+
+| id | nama       | keterangan           |
++----+------------+----------------------+
+|  1 | Furniture  | Ini adalah Furniture |
+|  2 | Electronic |                      |
+|  3 | Makanan    |                      |
+|  4 | Minuman    |                      |
++----+------------+----------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [sib_6]> update produk set harga = 20000, stock = 20 where id = 5;
+Query OK, 1 row affected (0.005 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [sib_6]> select *from produk;
++----+-------------+---------+-------+---------+------+
+| id | nama        | harga   | stock | idjenis | foto |
++----+-------------+---------+-------+---------+------+
+|  1 | TV          | 3000000 |    20 |       2 |      |
+|  2 | RADIO       | 4000000 |    10 |       2 |      |
+|  3 | MEJA        |  550000 |     5 |       1 |      |
+|  4 | KURSI       |  750000 |     5 |       1 |      |
+|  5 | Nasi Goreng |   20000 |    20 |       3 |      |
+|  6 | Es Campur   |   10000 |    10 |       4 |      |
++----+-------------+---------+-------+---------+------+
+6 rows in set (0.001 sec)
+
+MariaDB [sib_6]> delete from produk where id = 4;
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [sib_6]> select *from produk;
++----+-------------+---------+-------+---------+------+
+| id | nama        | harga   | stock | idjenis | foto |
++----+-------------+---------+-------+---------+------+
+|  1 | TV          | 3000000 |    20 |       2 |      |
+|  2 | RADIO       | 4000000 |    10 |       2 |      |
+|  3 | MEJA        |  550000 |     5 |       1 |      |
+|  5 | Nasi Goreng |   20000 |    20 |       3 |      |
+|  6 | Es Campur   |   10000 |    10 |       4 |      |
++----+-------------+---------+-------+---------+------+
+5 rows in set (0.001 sec)

@@ -1,0 +1,64 @@
+MariaDB [sib_6]> alter table jenis add column
+    -> keterangan varchar(30) after nama;
+Query OK, 0 rows affected (0.021 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [sib_6]> desc jenis
+    -> ;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama       | varchar(30) | NO   | UNI | NULL    |                |
+| keterangan | varchar(30) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.047 sec)
+
+MariaDB [sib_6]> alter table jenis rename to jeniss;
+Query OK, 0 rows affected (0.172 sec)
+
+MariaDB [sib_6]> show tables;
++-----------------+
+| Tables_in_sib_6 |
++-----------------+
+| jeniss          |
+| produk          |
++-----------------+
+2 rows in set (0.002 sec)
+
+MariaDB [sib_6]> alter table produk change stok  stock
+    -> int NOT NULL;
+Query OK, 0 rows affected (0.021 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [sib_6]> DESC prduk;
+ERROR 1146 (42S02): Table 'sib_6.prduk' doesn't exist
+MariaDB [sib_6]> DESC produk;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama    | varchar(30)  | NO   | UNI | NULL    |                |
+| harga   | double       | NO   |     | NULL    |                |
+| stock   | int(11)      | NO   |     | NULL    |                |
+| idjenis | int(11)      | NO   |     | NULL    |                |
+| foto    | varchar(255) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+6 rows in set (0.048 sec)
+
+MariaDB [sib_6]> alter table produk modify stock double after harga;
+Query OK, 0 rows affected (0.178 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [sib_6]> desc produk;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama    | varchar(30)  | NO   | UNI | NULL    |                |
+| harga   | double       | NO   |     | NULL    |                |
+| stock   | double       | YES  |     | NULL    |                |
+| idjenis | int(11)      | NO   |     | NULL    |                |
+| foto    | varchar(255) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+6 rows in set (0.065 sec)
