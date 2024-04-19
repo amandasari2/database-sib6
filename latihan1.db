@@ -40,7 +40,7 @@ MariaDB [sib_6]> desc jenis;
 
 MariaDB [sib_6]> create table produk(
     -> id int primary key auto_increment,
-    -> nam varchar(30) NOT NULL unique,
+    -> nama varchar(30) NOT NULL unique,
     -> harga double NOT NULL,
     -> stok int NOT NULL,
     -> idjenis int not null REFERENCES jenis(id),
