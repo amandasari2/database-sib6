@@ -1,0 +1,141 @@
+MariaDB [sib_6]> select nama, stock from produk;
++-------------+-------+
+| nama        | stock |
++-------------+-------+
+| TV          |    20 |
+| RADIO       |    10 |
+| MEJA        |     5 |
+| Nasi Goreng |    20 |
+| Es Campur   |    10 |
++-------------+-------+
+5 rows in set (0.081 sec)
+
+MariaDB [sib_6]> use dppos_sib6;
+ERROR 1049 (42000): Unknown database 'dppos_sib6'
+MariaDB [sib_6]> use dbpos_sib6;
+Database changed
+MariaDB [dbpos_sib6]> show tables;
++-------------------------+
+| Tables_in_dbpos_sib6    |
++-------------------------+
+| failed_jobs             |
+| jenis_produk            |
+| kartu                   |
+| lihat_vendor            |
+| member                  |
+| migrations              |
+| password_reset_tokens   |
+| password_resets         |
+| pelanggan               |
+| pembayaran              |
+| pembelian               |
+| personal_access_tokens  |
+| pesanan                 |
+| pesanan_items           |
+| pesanan_pelanggan_kartu |
+| produk                  |
+| staff                   |
+| users                   |
+| vendor                  |
++-------------------------+
+19 rows in set (0.003 sec)
+
+MariaDB [dbpos_sib6]> select kode, nama, stok from produk where stok = 4;
++------+------------------+------+
+| kode | nama             | stok |
++------+------------------+------+
+| TV02 | Televisi 40 inch |    4 |
+| M001 | Meja Makan       |    4 |
++------+------------------+------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbpos_sib6]> select *from pelanggan where tmp_lahir = 'jakarta';
++----+-------+-------------+----+-----------+------------+------------------+----------+
+| id | kode  | nama        | jk | tmp_lahir | tgl_lahir  | email            | kartu_id |
++----+-------+-------------+----+-----------+------------+------------------+----------+
+|  6 | C006  | Gayatri Dwi | P  | Jakarta   | 1987-11-28 | gaya87@gmail.com |        1 |
+|  7 | C007  | Dewi Gyat   | P  | Jakarta   | 1988-12-01 | giyat@gmail.com  |        1 |
+| 12 | K0011 | Ira         | P  | Jakarta   | 2023-11-07 | ira@gmail.com    |        4 |
++----+-------+-------------+----+-----------+------------+------------------+----------+
+3 rows in set (0.002 sec)
+
+MariaDB [dbpos_sib6]> SELECT kode, nama, tmp_lahir, tgl_lahir from pelanggan ORDER BY tgl_lahir DESC;
++-------+--------------------+------------+------------+
+| kode  | nama               | tmp_lahir  | tgl_lahir  |
++-------+--------------------+------------+------------+
+| K0011 | Ira                | Jakarta    | 2023-11-07 |
+| K0010 | Andi Wijaya        | Tangerang  | 2023-11-07 |
+| C001  | Agung Sedayu Group | Solo       | 2010-01-01 |
+| C009  | Ahmad Hasan        | Surabaya   | 1992-10-15 |
+| C010  | Cassanndra         | Belfast    | 1990-11-20 |
+| C008  | Andre Haru         | Surabaya   | 1990-07-15 |
+| C007  | Dewi Gyat          | Jakarta    | 1988-12-01 |
+| C006  | Gayatri Dwi        | Jakarta    | 1987-11-28 |
+| C005  | Pradabashu         | Pati       | 1985-04-02 |
+| C003  | Sekar Mirah        | Kediri     | 1983-02-20 |
+| C004  | Swandaru Geni      | Kediri     | 1981-01-04 |
+| C002  | Pandan Wangi       | Yogyakarta | 1950-01-01 |
++-------+--------------------+------------+------------+
+12 rows in set (0.001 sec)
+
+MariaDB [dbpos_sib6]> SELECT * from produk WHERE stok=3 OR stok=10;
++----+--------+-------------+------------+------------+------+----------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+| id | kode   | nama        | harga_beli | harga_jual | stok | min_stok | foto                   | deskripsi                                                                                                                                                                                                           | jenis_produk_id |
++----+--------+-------------+------------+------------+------+----------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+| 15 | L112   | Kopi        |      20000 |      30000 |   10 |       15 | foto-15.png            | Luwak White Coffee merupakan bubuk biji kopi luwak yang dikombinasikan dengan gurihnya krimer serta manisnya gula. Keharuman kopi serta rasa manisnya yang pas juga membuat popularitas Luwak White Coffee melejit. |               4 |
+| 16 | L113   | Teh Sosro 2 |      10000 |      15000 |   10 |       12 | .png                   | NULL                                                                                                                                                                                                                |               1 |
+| 18 | L0015  | Laptop Asus |    3000000 |    5000000 |   10 |       20 | foto-65542ffa66604.jpg | NULL                                                                                                                                                                                                                |               1 |
+| 27 | THP001 | Teh Pucuk   |       4000 |       5000 |   10 |        2 | pucuk.jpg              | Teh pucuk adalah                                                                                                                                                                                                    |               4 |
+| 28 | THP002 | Teh Pucuk2  |       4000 |       5000 |   10 |        2 | pucuk.jpg              | Teh pucuk adalah                                                                                                                                                                                                    |               4 |
++----+--------+-------------+------------+------------+------+----------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+5 rows in set (0.002 sec)
+
+MariaDB [dbpos_sib6]> select * from produk order by harga_beli desc limit= 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 2' at line 1
+MariaDB [dbpos_sib6]> select * from produk order by harga_beli desc limit 2;
++----+------+-----------------+------------+------------+------+----------+------+-----------+-----------------+
+| id | kode | nama            | harga_beli | harga_jual | stok | min_stok | foto | deskripsi | jenis_produk_id |
++----+------+-----------------+------------+------------+------+----------+------+-----------+-----------------+
+| 11 | L005 | Laptop Lenovo   |   13000000 |   16000000 |    5 |        2 |      | NULL      |               1 |
+|  9 | LN01 | Notebook Lenovo |    9000000 |   12480000 |    9 |        2 | NULL | NULL      |               5 |
++----+------+-----------------+------------+------------+------+----------+------+-----------+-----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbpos_sib6]> select kode, nama from produk where kode like 'K%' kode like 'M%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'kode like 'M%'' at line 1
+MariaDB [dbpos_sib6]> select kode, nama from produk where kode like 'K%' or  kode like 'M%';
++------+----------------+
+| kode | nama           |
++------+----------------+
+| K001 | Kulkas 2 pintu |
+| M001 | Meja Makan     |
++------+----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [dbpos_sib6]> select kode, nama from produk where kode not like 'M%';
++--------+-------------------+
+| kode   | nama              |
++--------+-------------------+
+| TV01   | Televisi 21 inchs |
+| TV02   | Televisi 40 inch  |
+| K001   | Kulkas 2 pintu    |
+| TK01   | Teh Kotak         |
+| PC01   | PC Desktop HP     |
+| TB01   | Teh Botol         |
+| AC01   | Notebook Acer S   |
+| LN01   | Notebook Lenovo   |
+| L005   | Laptop Lenovo     |
+| L112   | Kopi              |
+| L113   | Teh Sosro 2       |
+| L0015  | Laptop Asus       |
+| TV0115 | Televisi 22 inc`  |
+| TV0116 | Televisi 23 inc   |
+| TV0117 | Televisi 24 inc   |
+| TV0118 | Televisi 25 inc   |
+| TV0120 | Televisi 27 inc   |
+| TV0121 | Televisi 28 inc   |
+| TV0122 | Televisi 29 inc   |
+| THP001 | Teh Pucuk         |
+| THP002 | Teh Pucuk2        |
++--------+-------------------+
+21 rows in set (0.001 sec)
