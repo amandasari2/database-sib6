@@ -1,0 +1,80 @@
+MariaDB [dbpos_sib6]> show tables;
++-------------------------+
+| Tables_in_dbpos_sib6    |
++-------------------------+
+| failed_jobs             |
+| jenis_produk            |
+| kartu                   |
+| lihat_vendor            |
+| member                  |
+| migrations              |
+| password_reset_tokens   |
+| password_resets         |
+| pelanggan               |
+| pembayaran              |
+| pembelian               |
+| personal_access_tokens  |
+| pesanan                 |
+| pesanan_items           |
+| pesanan_pelanggan_kartu |
+| produk                  |
+| staff                   |
+| users                   |
+| vendor                  |
++-------------------------+
+19 rows in set (0.026 sec)
+
+MariaDB [dbpos_sib6]> desc jenis_produk;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(45) | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.058 sec)
+
+MariaDB [dbpos_sib6]> desc produk;
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| id              | int(11)      | NO   | PRI | NULL    | auto_increment |
+| kode            | varchar(10)  | NO   | UNI | NULL    |                |
+| nama            | varchar(45)  | NO   |     | NULL    |                |
+| harga_beli      | double       | NO   |     | NULL    |                |
+| harga_jual      | double       | NO   |     | NULL    |                |
+| stok            | int(11)      | NO   |     | NULL    |                |
+| min_stok        | int(11)      | NO   |     | NULL    |                |
+| foto            | varchar(255) | YES  |     | NULL    |                |
+| deskripsi       | text         | YES  |     | NULL    |                |
+| jenis_produk_id | int(11)      | NO   | MUL | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
+10 rows in set (0.041 sec)
+
+MariaDB [dbpos_sib6]> select nama, jenis_produk_id from produk;
++-------------------+-----------------+
+| nama              | jenis_produk_id |
++-------------------+-----------------+
+| Televisi 21 inchs |               1 |
+| Televisi 40 inch  |               1 |
+| Kulkas 2 pintu    |               1 |
+| Meja Makan        |               2 |
+| Teh Kotak         |               4 |
+| PC Desktop HP     |               5 |
+| Teh Botol         |               4 |
+| Notebook Acer S   |               5 |
+| Notebook Lenovo   |               5 |
+| Laptop Lenovo     |               1 |
+| Kopi              |               4 |
+| Teh Sosro 2       |               1 |
+| Laptop Asus       |               1 |
+| Televisi 22 inc`  |               1 |
+| Televisi 23 inc   |               1 |
+| Televisi 24 inc   |               1 |
+| Televisi 25 inc   |               1 |
+| Televisi 27 inc   |               1 |
+| Televisi 28 inc   |               1 |
+| Televisi 29 inc   |               1 |
+| Teh Pucuk         |               4 |
+| Teh Pucuk2        |               4 |
++-------------------+-----------------+
+22 rows in set (0.001 sec)
