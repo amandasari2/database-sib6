@@ -1,0 +1,151 @@
+MariaDB [dbpos_sib6]> select produk.*, jenis_produk.nama as jenis from produk inner join jenis_produk on produk.jenis_produk_id= jenis_produk.id;
++----+--------+-------------------+------------+------------+------+----------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+-------------+
+| id | kode   | nama              | harga_beli | harga_jual | stok | min_stok | foto                   | deskripsi                                                                                                                                                                                                           | jenis_produk_id | jenis       |
++----+--------+-------------------+------------+------------+------+----------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+-------------+
+|  1 | TV01   | Televisi 21 inchs |    3500000 |   50500000 |    5 |        2 |                        | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+|  2 | TV02   | Televisi 40 inch  |    5500000 |    7440000 |    4 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+|  3 | K001   | Kulkas 2 pintu    |    3500000 |    4680000 |    6 |        2 |                        | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 11 | L005   | Laptop Lenovo     |   13000000 |   16000000 |    5 |        2 |                        | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 16 | L113   | Teh Sosro 2       |      10000 |      15000 |   10 |       12 | .png                   | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 18 | L0015  | Laptop Asus       |    3000000 |    5000000 |   10 |       20 | foto-65542ffa66604.jpg | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 19 | TV0115 | Televisi 22 inc`  |    3500000 |   50500000 |    5 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 20 | TV0116 | Televisi 23 inc   |    3500000 |   50500000 |    5 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 21 | TV0117 | Televisi 24 inc   |    3500000 |   50500000 |    5 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 22 | TV0118 | Televisi 25 inc   |    3500000 |   50500000 |    5 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 24 | TV0120 | Televisi 27 inc   |    3500000 |   50500000 |    5 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 25 | TV0121 | Televisi 28 inc   |    3500000 |   50500000 |    5 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+| 26 | TV0122 | Televisi 29 inc   |    3500000 |   50500000 |    5 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               1 | elektroniks |
+|  4 | M001   | Meja Makan        |     500000 |     600000 |    4 |        3 | NULL                   | NULL                                                                                                                                                                                                                |               2 | furniture   |
+|  5 | TK01   | Teh Kotak         |       3000 |       3500 |    6 |       10 | foto-5.png             | NULL                                                                                                                                                                                                                |               4 | minuman     |
+|  7 | TB01   | Teh Botol         |       2000 |       2500 |   53 |       10 | foto-7.jpg             | NULL                                                                                                                                                                                                                |               4 | minuman     |
+| 15 | L112   | Kopi              |      20000 |      30000 |   10 |       15 | foto-15.png            | Luwak White Coffee merupakan bubuk biji kopi luwak yang dikombinasikan dengan gurihnya krimer serta manisnya gula. Keharuman kopi serta rasa manisnya yang pas juga membuat popularitas Luwak White Coffee melejit. |               4 | minuman     |
+| 27 | THP001 | Teh Pucuk         |       4000 |       5000 |   10 |        2 | pucuk.jpg              | Teh pucuk adalah                                                                                                                                                                                                    |               4 | minuman     |
+| 28 | THP002 | Teh Pucuk2        |       4000 |       5000 |   10 |        2 | pucuk.jpg              | Teh pucuk adalah                                                                                                                                                                                                    |               4 | minuman     |
+|  6 | PC01   | PC Desktop HP     |    7000000 |    9984000 |    9 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               5 | komputer    |
+|  8 | AC01   | Notebook Acer S   |    8000000 |   11232000 |    7 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               5 | komputer    |
+|  9 | LN01   | Notebook Lenovo   |    9000000 |   12480000 |    9 |        2 | NULL                   | NULL                                                                                                                                                                                                                |               5 | komputer    |
++----+--------+-------------------+------------+------------+------+----------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+-------------+
+22 rows in set (0.155 sec)
+
+MariaDB [dbpos_sib6]> select produk.nama,produk.stok,produk.min_stok,jenis_produk.nama as jenis from produk inner join jenis_produk
+    -> on produk.jenis_produk_id = jenis_produk.id;
++-------------------+------+----------+-------------+
+| nama              | stok | min_stok | jenis       |
++-------------------+------+----------+-------------+
+| Televisi 21 inchs |    5 |        2 | elektroniks |
+| Televisi 40 inch  |    4 |        2 | elektroniks |
+| Kulkas 2 pintu    |    6 |        2 | elektroniks |
+| Laptop Lenovo     |    5 |        2 | elektroniks |
+| Teh Sosro 2       |   10 |       12 | elektroniks |
+| Laptop Asus       |   10 |       20 | elektroniks |
+| Televisi 22 inc`  |    5 |        2 | elektroniks |
+| Televisi 23 inc   |    5 |        2 | elektroniks |
+| Televisi 24 inc   |    5 |        2 | elektroniks |
+| Televisi 25 inc   |    5 |        2 | elektroniks |
+| Televisi 27 inc   |    5 |        2 | elektroniks |
+| Televisi 28 inc   |    5 |        2 | elektroniks |
+| Televisi 29 inc   |    5 |        2 | elektroniks |
+| Meja Makan        |    4 |        3 | furniture   |
+| Teh Kotak         |    6 |       10 | minuman     |
+| Teh Botol         |   53 |       10 | minuman     |
+| Kopi              |   10 |       15 | minuman     |
+| Teh Pucuk         |   10 |        2 | minuman     |
+| Teh Pucuk2        |   10 |        2 | minuman     |
+| PC Desktop HP     |    9 |        2 | komputer    |
+| Notebook Acer S   |    7 |        2 | komputer    |
+| Notebook Lenovo   |    9 |        2 | komputer    |
++-------------------+------+----------+-------------+
+22 rows in set (0.002 sec)
+
+MariaDB [dbpos_sib6]> select produk.nama,produk.stok,produk.min_stok,jenis_produk.nama as jenis from produk left join jenis_produk
+    -> on produk.jenis_produk_id = jenis_produk.id;
++-------------------+------+----------+-------------+
+| nama              | stok | min_stok | jenis       |
++-------------------+------+----------+-------------+
+| Televisi 21 inchs |    5 |        2 | elektroniks |
+| Televisi 40 inch  |    4 |        2 | elektroniks |
+| Kulkas 2 pintu    |    6 |        2 | elektroniks |
+| Meja Makan        |    4 |        3 | furniture   |
+| Teh Kotak         |    6 |       10 | minuman     |
+| PC Desktop HP     |    9 |        2 | komputer    |
+| Teh Botol         |   53 |       10 | minuman     |
+| Notebook Acer S   |    7 |        2 | komputer    |
+| Notebook Lenovo   |    9 |        2 | komputer    |
+| Laptop Lenovo     |    5 |        2 | elektroniks |
+| Kopi              |   10 |       15 | minuman     |
+| Teh Sosro 2       |   10 |       12 | elektroniks |
+| Laptop Asus       |   10 |       20 | elektroniks |
+| Televisi 22 inc`  |    5 |        2 | elektroniks |
+| Televisi 23 inc   |    5 |        2 | elektroniks |
+| Televisi 24 inc   |    5 |        2 | elektroniks |
+| Televisi 25 inc   |    5 |        2 | elektroniks |
+| Televisi 27 inc   |    5 |        2 | elektroniks |
+| Televisi 28 inc   |    5 |        2 | elektroniks |
+| Televisi 29 inc   |    5 |        2 | elektroniks |
+| Teh Pucuk         |   10 |        2 | minuman     |
+| Teh Pucuk2        |   10 |        2 | minuman     |
++-------------------+------+----------+-------------+
+22 rows in set (0.001 sec)
+
+MariaDB [dbpos_sib6]> SELECT produk.nama, produk.stok, produk.min_stok, jenis_produk.nama AS jenis FROM produk RIGHT JOIN jenis_produk ON produk.jenis_produk_id = jenis_produk.id;
++-------------------+------+----------+----------------+
+| nama              | stok | min_stok | jenis          |
++-------------------+------+----------+----------------+
+| Televisi 21 inchs |    5 |        2 | elektroniks    |
+| Televisi 40 inch  |    4 |        2 | elektroniks    |
+| Kulkas 2 pintu    |    6 |        2 | elektroniks    |
+| Laptop Lenovo     |    5 |        2 | elektroniks    |
+| Teh Sosro 2       |   10 |       12 | elektroniks    |
+| Laptop Asus       |   10 |       20 | elektroniks    |
+| Televisi 22 inc`  |    5 |        2 | elektroniks    |
+| Televisi 23 inc   |    5 |        2 | elektroniks    |
+| Televisi 24 inc   |    5 |        2 | elektroniks    |
+| Televisi 25 inc   |    5 |        2 | elektroniks    |
+| Televisi 27 inc   |    5 |        2 | elektroniks    |
+| Televisi 28 inc   |    5 |        2 | elektroniks    |
+| Televisi 29 inc   |    5 |        2 | elektroniks    |
+| Meja Makan        |    4 |        3 | furniture      |
+| NULL              | NULL |     NULL | makanan        |
+| Teh Kotak         |    6 |       10 | minuman        |
+| Teh Botol         |   53 |       10 | minuman        |
+| Kopi              |   10 |       15 | minuman        |
+| Teh Pucuk         |   10 |        2 | minuman        |
+| Teh Pucuk2        |   10 |        2 | minuman        |
+| PC Desktop HP     |    9 |        2 | komputer       |
+| Notebook Acer S   |    7 |        2 | komputer       |
+| Notebook Lenovo   |    9 |        2 | komputer       |
+| NULL              | NULL |     NULL | Makanan Ringan |
+| NULL              | NULL |     NULL | Minuman soda   |
+| NULL              | NULL |     NULL | Makanan Berat  |
++-------------------+------+----------+----------------+
+26 rows in set (0.002 sec)
+
+MariaDB [dbpos_sib6]> SELECT pesanan.id, pesanan.tanggal, pesanan.total, pelanggan.kode, pelanggan.nama, kartu.nama AS nama_kartu, kartu.diskon FROM pesanan INNER JOIN pelanggan ON pesanan.pelanggan_id = pelanggan.id INNER JOIN kartu ON pelanggan.kartu_id = kartu.id;
++----+------------+---------+------+--------------------+---------------+--------+
+| id | tanggal    | total   | kode | nama               | nama_kartu    | diskon |
++----+------------+---------+------+--------------------+---------------+--------+
+|  1 | 2015-11-04 | 9720000 | C001 | Agung Sedayu Group | Gold Utama    |   0.05 |
+|  2 | 2015-11-04 |   17500 | C003 | Sekar Mirah        | Gold Utama    |   0.05 |
+|  3 | 2015-11-04 |       0 | C006 | Gayatri Dwi        | Gold Utama    |   0.05 |
+|  4 | 2015-11-04 |       0 | C007 | Dewi Gyat          | Gold Utama    |   0.05 |
+|  5 | 2015-11-04 |       0 | C010 | Cassanndra         | Gold Utama    |   0.05 |
+|  6 | 2015-11-04 |       0 | C002 | Pandan Wangi       | Platinum Jaya |    0.1 |
+|  7 | 2015-11-04 |       0 | C005 | Pradabashu         | Platinum Jaya |    0.1 |
+|  8 | 2015-11-04 |       0 | C004 | Swandaru Geni      | Non Member    |      0 |
+|  9 | 2015-11-04 |       0 | C008 | Andre Haru         | Non Member    |      0 |
+| 10 | 2015-11-04 |       0 | C009 | Ahmad Hasan        | Non Member    |      0 |
+| 11 | 2015-11-04 |   30000 | C009 | Ahmad Hasan        | Non Member    |      0 |
++----+------------+---------+------+--------------------+---------------+--------+
+11 rows in set (0.010 sec)
+
+MariaDB [dbpos_sib6]> SELECT pembelian.id, pembelian.tanggal, pembelian.nomor, pembelian.jumlah, pembelian.harga, produk.nama, vendor.nama, vendor.kontak FROM pembelian INNER JOIN produk ON pembelian.produk_id = produk.id INNER JOIN vendor ON pembelian.vendor_id = vendor.id;
++----+------------+-------+--------+---------+-------------------+----------------------+-----------------+
+| id | tanggal    | nomor | jumlah | harga   | nama              | nama                 | kontak          |
++----+------------+-------+--------+---------+-------------------+----------------------+-----------------+
+|  1 | 2019-10-10 | P001  |      2 | 3500000 | Televisi 21 inchs | PT Guna Samudra      | Ali Nurdin      |
+|  2 | 2019-11-20 | P002  |      5 | 5500000 | Televisi 40 inch  | PT Pondok C9         | Putri Ramadhani |
+|  3 | 2019-12-12 | P003  |      5 | 5400000 | Televisi 40 inch  | PT Guna Samudra      | Ali Nurdin      |
+|  4 | 2020-01-20 | P004  |    200 |    1800 | Teh Botol         | CV Jaya Raya Semesta | Dwi Rahayu      |
+|  5 | 2020-01-20 | P005  |    100 |    2300 | Teh Kotak         | CV Jaya Raya Semesta | Dwi Rahayu      |
++----+------------+-------+--------+---------+-------------------+----------------------+-----------------+
+5 rows in set (0.001 sec)

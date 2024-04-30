@@ -1,0 +1,28 @@
+CREATE VIEW pesanan_pelanggan_kartu_test AS SELECT
+    pesanan.id,
+    pesanan.tanggal,
+    pesanan.total,
+    pelanggan.kode,
+    pelanggan.nama,
+    kartu.nama AS nama_kartu,
+    kartu.diskon
+FROM
+    pesanan
+INNER JOIN pelanggan ON pesanan.pelanggan_id = pesanan.id
+INNER JOIN kartu ON pelanggan.kartu_id = kartu.id;
+
+CREATE VIEW pembelian_produk_vendor AS SELECT
+    p.id,
+    p.tanggal,
+    p.nomor,
+    p.jumlah,
+    p.harga,
+    pr.nama,
+    v.nama AS nama_vendor,
+    v.kontak
+FROM
+    pembelian p
+INNER JOIN produk pr ON
+    p.produk_id = pr.id
+INNER JOIN vendor v ON
+    p.vendor_id = v.id;
